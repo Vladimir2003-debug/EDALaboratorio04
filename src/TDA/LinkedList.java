@@ -69,6 +69,8 @@ public class LinkedList<E> implements TDAList<E> {
     }
 
     public E get(int index) {
+        if(index < 0 || index >= this.size())
+            throw new IndexOutOfBoundsException();
         int i = 0;
         Node<E> tmp = this.root;
         while(i < index) {
@@ -135,14 +137,17 @@ public class LinkedList<E> implements TDAList<E> {
     }
 
     public E set(int index, E element) {
+        if(index < 0 || index >= this.size())
+            throw new IndexOutOfBoundsException();
         int i = 0;
+        index--;
         Node<E> tmp = this.root;
         while (i < index) {
             tmp = tmp.getNext();
             i++;
         }
-        E data = tmp.getData();
-        tmp.setNext(new Node<E>(element, tmp.getNext()));
+        E data = tmp.getNext().getData();
+        tmp.setNext(new Node<E>(element, tmp.getNext().getNext()));
         return data;
     }
 
