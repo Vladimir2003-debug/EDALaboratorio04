@@ -14,18 +14,49 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
 
     public boolean add(E e) {
         if(this.first == null) {
-            this.first = this.last = new DoubleNode<E>(e);
+            this.first = new DoubleNode<E>(e);
+            this.last = this.first;
             size++;
             return true;
         }
-
-        this.last = new DoubleNode<E>(e, null, this.last);
+        DoubleNode<E> node = new DoubleNode<E>(e, null, this.last);
+        this.last.setNext(node);
+        this.last = node;
+        size++;
         return true;
+    }
+
+    public E set(int index, E element){
+        if(index < 0 || index >= this.size())
+            throw new IndexOutOfBoundsException();
+        int i = 0;
+        index--;
+        DoubleNode<E> tmp = this.first;
+        while (i < index) {
+            tmp = tmp.getNext();
+            i++;
+        }
+        E data = tmp.getNext().getData();
+        tmp.getNext().setData(element);
+        return data;
+    }
+
+    public E get(int index) {
+        if(index < 0 || index >= this.size())
+            throw new IndexOutOfBoundsException();
+        int i = 0;
+        DoubleNode<E> tmp = this.first;
+        while(i < index) {
+            tmp = tmp.getNext();
+            i++;
+        }
+        return tmp.getData();
     }
 
     public void add(int index, E element) {
         if(this.first == null) {
-            this.first = this.last = new DoubleNode<E>(element);
+            this.first = new DoubleNode<E>(element);
+            this.last = this.first;
             size++;
             return;
         }
@@ -39,7 +70,6 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         tmp.setNext(node);
         node.getNext().setPrev(node); 
         size++;       
-
         
     }
 
@@ -63,4 +93,18 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         return super.remove(o);
     }
 
+    public String toString() {
+        String txt = "";
+        for(DoubleNode<E> tmp = this.first ; tmp != null; tmp = tmp.getNext()) {
+            txt += tmp.getData().toString() + " ";
+        }
+        return txt;
+    }
+    public String printPrev(){
+        String txt = "";
+        for(DoubleNode<E> tmp = this.last ; tmp != null; tmp = tmp.getPrev()) {
+            txt += tmp.getData().toString() + " ";
+        }
+        return txt;
+    }
 }
