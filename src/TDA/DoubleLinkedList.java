@@ -58,7 +58,7 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         size--;
         return data;
     }
-
+    
     public boolean remove(Object o) {
         return super.remove(o);
     }
