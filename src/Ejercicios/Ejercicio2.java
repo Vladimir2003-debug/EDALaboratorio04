@@ -3,22 +3,28 @@ import TDA.DoubleLinkedList;
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Ejercicio2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int tamano;
         Scanner teclado = new Scanner(System.in);
         System.out.print("Introduzca el tamaño máximo del último arreglo: ");
         tamano = teclado.nextInt();
 
         ArrayList<DoubleLinkedList<Integer>> casos = new ArrayList<DoubleLinkedList<Integer>>();
+        String archivoInsercion = "insercionDoubleLinkedList.txt";
+        PrintWriter oS = new PrintWriter(archivoInsercion);
+
         for (int n = 1; n <= tamano; n++) {
             casos.add(generarPeorCasoInt(n));
         }
         Iterator<DoubleLinkedList<Integer>> puntero = casos.iterator();
         while (puntero.hasNext()) {
-            System.out.println(insertionSort(puntero.next()));
+            oS.println(String.valueOf(insertionSort(puntero.next())));
         }
+        oS.close();
     }
 
     /**
