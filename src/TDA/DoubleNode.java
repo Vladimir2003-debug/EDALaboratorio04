@@ -15,7 +15,7 @@ public class DoubleNode<E> extends Node<E> {
     }
 
     public DoubleNode<E> getNext() {
-        return next;
+        return this.next;
     }
 
     public void setNext(DoubleNode<E> next) {
@@ -23,12 +23,10 @@ public class DoubleNode<E> extends Node<E> {
     }
 
     public DoubleNode<E> getPrev() {
-        return prev;
+        return this.prev;
     }
 
     public void setPrev(DoubleNode<E> prev) {
         this.prev = prev;
     }
-
-    
 }
