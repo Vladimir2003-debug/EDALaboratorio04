@@ -25,6 +25,12 @@ public class Ejercicio2 {
             oS.println(String.valueOf(insertionSort(puntero.next())));
         }
         oS.close();
+        // plot "/Users/richarteq/eclipse-workspace/Algoritmica/insercion.txt" with
+        // lines
+        // JavaPlot p = new JavaPlot();
+        // p.addPlot("\"/home/richart/eclipse-workspace/Algoritmica/insercion.txt\" with
+        // lines");
+        // p.plot();
     }
 
     /**
