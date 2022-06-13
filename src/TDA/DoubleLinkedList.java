@@ -1,6 +1,6 @@
 package TDA;
 
-public class DoubleLinkedList<E> extends LinkedList<E>{
+public class DoubleLinkedList<E> extends LinkedList<E> {
     private DoubleNode<E> last;
     private DoubleNode<E> first;
 
@@ -13,7 +13,7 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
     }
 
     public boolean add(E e) {
-        if(this.first == null) {
+        if (this.first == null) {
             this.first = new DoubleNode<E>(e);
             this.last = this.first;
             size++;
@@ -26,40 +26,68 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         return true;
     }
 
-    public E set(int index, E element){
-        if(index < 0 || index >= this.size())
+    public E set(int index, E element) {
+        if (index < 0 || index >= this.size())
             throw new IndexOutOfBoundsException();
-        if(index == 0) {
-            E data = this.first.getData();
-            this.first.setData(element);
+        int i = 0;
+        if (index < size / 2) {
+            if (index == 0) {
+                E data = this.first.getData();
+                this.first.setData(element);
+                return data;
+            }
+            index--;
+            DoubleNode<E> tmp = this.first;
+            while (i < index) {
+                tmp = tmp.getNext();
+                i++;
+            }
+            E data = tmp.getNext().getData();
+            tmp.getNext().setData(element);
+            return data;
+        } else {
+            if(index == size - 1) {
+                E data = this.last.getData();
+                this.last.setData(element);
+                return data;
+            }
+            index = size - index - 2;
+            DoubleNode<E> tmp = this.last;
+            while (i < index) {
+                tmp = tmp.getPrev();
+                i++;
+            }
+            E data = tmp.getPrev().getData();
+            tmp.getPrev().setData(element);
             return data;
         }
-        int i = 0;
-        index--;
-        DoubleNode<E> tmp = this.first;
-        while (i < index) {
-            tmp = tmp.getNext();
-            i++;
-        }
-        E data = tmp.getNext().getData();
-        tmp.getNext().setData(element);
-        return data;
     }
 
     public E get(int index) {
-        if(index < 0 || index >= this.size())
+        if (index < 0 || index >= this.size())
             throw new IndexOutOfBoundsException();
         int i = 0;
-        DoubleNode<E> tmp = this.first;
-        while(i < index) {
-            tmp = tmp.getNext();
-            i++;
+        if (index < size / 2) {
+            DoubleNode<E> tmp = this.first;
+            while (i < index) {
+                tmp = tmp.getNext();
+                i++;
+            }
+            return tmp.getData();
+        } else {
+            DoubleNode<E> tmp = this.last;
+            index = size - index - 1;
+            while (i < index) {
+                tmp = tmp.getPrev();
+                i++;
+            }
+            return tmp.getData();
         }
-        return tmp.getData();
+
     }
 
     public void add(int index, E element) {
-        if(this.first == null) {
+        if (this.first == null) {
             this.first = new DoubleNode<E>(element);
             this.last = this.first;
             size++;
@@ -67,23 +95,23 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         }
         DoubleNode<E> tmp = this.first;
         int i = 0;
-        while(i < size && i < index - 1) {
+        while (i < size && i < index - 1) {
             tmp = tmp.getNext();
             i++;
         }
         DoubleNode<E> node = new DoubleNode<E>(element, tmp.getNext(), tmp.getNext().getNext());
         tmp.setNext(node);
-        node.getNext().setPrev(node); 
-        size++;       
-        
+        node.getNext().setPrev(node);
+        size++;
+
     }
 
     public E remove(int index) {
-        if(index < 0 || index > size)
+        if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
         DoubleNode<E> tmp = this.first;
         int i = 0;
-        while(i < index) {
+        while (i < index) {
             tmp = tmp.getNext();
             i++;
         }
@@ -93,21 +121,22 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
         size--;
         return data;
     }
-    
+
     public boolean remove(Object o) {
         return super.remove(o);
     }
 
     public String toString() {
         String txt = "";
-        for(DoubleNode<E> tmp = this.first ; tmp != null; tmp = tmp.getNext()) {
+        for (DoubleNode<E> tmp = this.first; tmp != null; tmp = tmp.getNext()) {
             txt += tmp.getData().toString() + " ";
         }
         return txt;
     }
-    public String printPrev(){
+
+    public String printPrev() {
         String txt = "";
-        for(DoubleNode<E> tmp = this.last ; tmp != null; tmp = tmp.getPrev()) {
+        for (DoubleNode<E> tmp = this.last; tmp != null; tmp = tmp.getPrev()) {
             txt += tmp.getData().toString() + " ";
         }
         return txt;
