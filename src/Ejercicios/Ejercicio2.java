@@ -14,7 +14,7 @@ public class Ejercicio2 {
         tamano = teclado.nextInt();
 
         ArrayList<DoubleLinkedList<Integer>> casos = new ArrayList<DoubleLinkedList<Integer>>();
-        String archivoInsercion = "insercionDoubleLinkedList.txt";
+        String archivoInsercion = "insercionDoubleLinkedListModificado.txt";
         PrintWriter oS = new PrintWriter(archivoInsercion);
 
         for (int n = 1; n <= tamano; n++) {
@@ -31,6 +31,7 @@ public class Ejercicio2 {
         // p.addPlot("\"/home/richart/eclipse-workspace/Algoritmica/insercion.txt\" with
         // lines");
         // p.plot();
+        
     }
 
     /**
