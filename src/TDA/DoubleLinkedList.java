@@ -29,6 +29,11 @@ public class DoubleLinkedList<E> extends LinkedList<E>{
     public E set(int index, E element){
         if(index < 0 || index >= this.size())
             throw new IndexOutOfBoundsException();
+        if(index == 0) {
+            E data = this.first.getData();
+            this.first.setData(element);
+            return data;
+        }
         int i = 0;
         index--;
         DoubleNode<E> tmp = this.first;
