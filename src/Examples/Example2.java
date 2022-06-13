@@ -13,7 +13,10 @@ public class Example2 {
 
         int arreglo[] = generarPeorCaso(tamano);
         imprimirArreglo(arreglo);
+        System.out.println();
         insertionSort(arreglo);
+        imprimirArreglo(arreglo);
+        System.out.println(arreglo[0]);
     }
 
     /**
@@ -32,7 +35,7 @@ public class Example2 {
                 A[i + 1] = A[i];
                 i = i - 1;
             }
-            imprimirArreglo(A);
+            System.out.println(A);
             A[i + 1] = key;
         }
     }
