@@ -57,14 +57,135 @@
 
 # Sort y Listas Enlazadas
 
-[![License][license]][license-file]
-[![Downloads][downloads]][releases]
-[![Last Commit][last-commit]][releases]
+## ORGANIZACION
 
-[![Debian][Debian]][debian-site]
-[![Git][Git]][git-site]
-[![GitHub][GitHub]][github-site]
-[![Vim][Vim]][vim-site]
-[![Java][Java]][java-site]
+Los ficheros estan organizados:
 
-#
+```
+
+```
+## Problemas 
+
+JavaPlot dentro de la Libreria JavaPlot no se pudo encontrar en el archivo jar 
+
+### Herramientas usadas
+- Visual Studio Code con la extension "extension pack for java" que contiene los elemtos necesarios para ejecutar archivos java 
+y "vim" que simula el uso de vim en vs code
+- GNU - Plot
+
+### Objetivos 
+- Estudiar el algoritmo de ordenamiento por inserción.
+- Utilizar Listas Enlazadas para guardar los datos y ejecutar el algoritmo de ordenamiento.
+
+## RESOLUCION
+
+### Ejercicio 1
+Utilizar el tipo generico de Lista Enlazada para generar los peores casos y ejecutar el algoritmo de ordenamiento.
+
+Para la resolucion de este ejercicio se requirio principalmente de tres metodos:
+Metodo add() que consiste en agregar un elemento al final de la lista
+```java
+    public boolean add(E e) {
+    //comprueba si el root esta vacio
+        if(root == null) {
+            root = new Node<E>(e);
+            size++;
+            return true;
+        }
+        //recorre todo el arreglo para que al final agrege el elemento
+        Node<E> tmp = this.root;
+        while (tmp.getNext() != null) {
+            tmp = tmp.getNext();
+        }
+        tmp.setNext(new Node<E>(e));
+        size++;
+        return true;
+    }
+```
+
+Metod get() que consiste en obtener un elemento en el index deseado
+
+```java
+    public E get(int index) {
+        if(index < 0 || index >= this.size()) // comprobar de acuerdo al tamaño del arreglo
+            throw new IndexOutOfBoundsException();
+        //recorre desde root hasta el index deseado
+        int i = 0;
+        Node<E> tmp = this.root;
+        while(i < index) {
+            tmp = tmp.getNext();
+            i++;
+        }
+        return tmp.getData();
+    }
+```
+Metodo set() que cambia un elemento en el index mencionado
+
+```java
+    public E set(int index, E element) {
+        if(index < 0 || index >= this.size())// comprobacion segun el index que se ingresa
+            throw new IndexOutOfBoundsException();
+        //recorre toda la lista hasta el index -1
+        int i = 0;
+        index--;
+        Node<E> tmp = this.root;
+        while (i < index) {
+            tmp = tmp.getNext();
+            i++;
+        }
+        E data = tmp.getNext().getData();
+        // cambio de valor en el index
+        tmp.setNext(new Node<E>(element, tmp.getNext().getNext()));
+        return data;
+    }
+```
+
+### Ejercicio 2
+
+Utilizar el tipo generico de Doble Lista Enlazada para generar los peores casos y ejecutar el algoritmo de ordenamiento.
+
+Los metodos usados son similares al del anterior ejercicio con la diferencia de que en vez de node se usa un DoubleNode y que se añade una linea de codigo para enlazar el elemento con el anterior
+
+### Procedimiento
+
+Se simulo una serie de listas con peor caso, el tiempo que requirio ejecutar el ordenamiento de estas listas se ingreso a un archivo y se ejecuto con el Programa GNUPlot
+```
+plot "insercionLinkedList.txt" with lines
+```
+comando ejecutado en GNUPLOT para el Ejercicio 1 - LinkedList
+```
+plot "insercionDoubleLinkedList.txt" with lines
+```
+Comando ejecutado en GNUPLOT para el Ejercicio 2 - DoubleLinkedList
+
+Los resultados fueron los siguientes:
+
+## CUESTIONARIO
+
+- ¿Cómo se ejecutaría sus implementaciones desde terminal(consola)? 
+Tanto en el tutorial de uso de JavaPlot como en una pregunta de stack overflow:
+Para primero compilar
+```
+javac -cp ".:/home/path/mail.jar:/home/path/servlet.jar" MyJavaFile.java
+```
+Donde lo que esta entre parentesisi es la ubicacion en la computadora del jar y el -cp se refiere a classpath este archivo que se crea al crear un nuevo proyecto
+en eclipse, en este archivo se indica la direccion de los archivos .class (Usualmente se guardan en bin) y de los archivos java(en src)
+
+Para la ejecucion
+``` 
+java -cp ".:/home/path/mail.jar:/home/path/servlet.jar" MyJavaFile.java
+
+``` 
+## RETROALIMENTACION
+
+
+
+
+
+
+## REFERENCIAS
+
+```
+[https://javaplot.panayotis.com/
+](https://stackoverflow.com/questions/9395207/how-to-include-jar-files-with-java-file-and-compile-in-command-prompt)
+``` 
