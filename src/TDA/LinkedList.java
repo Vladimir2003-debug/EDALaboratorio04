@@ -139,6 +139,11 @@ public class LinkedList<E> implements TDAList<E> {
     public E set(int index, E element) {
         if(index < 0 || index >= this.size())
             throw new IndexOutOfBoundsException();
+        if(index == 0) {
+            E data = root.getData();
+            this.root.setData(element);
+            return data; 
+        }    
         int i = 0;
         index--;
         Node<E> tmp = this.root;
