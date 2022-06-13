@@ -189,8 +189,11 @@ Para el Ejercicio 2<br>
 
 Al analizar Los diferentes metodos con las diferentes metodos se observan algunas diferencias
 - LinkedList es mas suavizado que DoubleLinkedList
-- El tiempo de ejecucion a diferencia de un arreglo estandar es mayor sin embargo es mas suavizada que al usar un arreglo estandar. En una lista enlazada no se puede obtener el dato directamente se requiere recorrer cada nodo del arreglo para acceder al nodo que se requiere, lo mismo pasa con DoubleLinkedList. La diferencia entre DoubleLinkedList y Linked List es que doubleLinkedList 
-requerira de mas trabajo que LinkedList ya que tiene de acoplar y desacoplar el nodo sin embargo se puede odificar el metodo para que sea mas corto el tiempo. LinkedList por otro lado no posee otra forma de acceder al nodo mas que yendo de inicio al n - nodo.
+- El tiempo de ejecucion a diferencia de un arreglo estandar es mayor sin embargo es mas suavizada que al usar un arreglo estandar. En una lista enlazada no se puede
+obtener el dato directamente se requiere recorrer cada nodo del arreglo para acceder al nodo que se requiere, lo mismo pasa con DoubleLinkedList. Al analizar los
+graficos nos damos cuenta de que esta desventaja no es notoria a simple vista y es facil pensar que linked List es mas lento para ordenar a comparacion de un arreglo
+ estandar. DoubleLinkedList parece el mas desnivelado de todos pero se puede usar maneras para tratar de suavizar un poco la curva una manera es ya no
+ yendo de Primero a n sino de Ultimo a n para acceder/cambiar los datos.
 
 ## CUESTIONARIO
 
