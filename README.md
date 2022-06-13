@@ -160,6 +160,13 @@ Comando ejecutado en GNUPLOT para el Ejercicio 2 - DoubleLinkedList
 
 Los resultados fueron los siguientes:
 
+Para El ejercicio 1:
+
+![LinkedListEstadistica](imagenes/LinkedListEstadistica.png)
+
+Para el Ejercicio 2
+![DoubleLinkedListEstadistica](imagenes/DoubleLinkedListEstadistica.png)
+
 ## CUESTIONARIO
 
 - ¿Cómo se ejecutaría sus implementaciones desde terminal(consola)? 
