@@ -111,6 +111,7 @@ Utilizar el tipo generico de Doble Lista Enlazada para generar los peores casos 
 
 Los metodos usados son similares al del anterior ejercicio con la diferencia de que en vez de node se usa un DoubleNode y que se añade una linea de codigo para enlazar el elemento con el anterior
 
+
 ### Metodo de insercion
 El metodo consta de un dato generico que deriva de la clase comparable
 
@@ -134,7 +135,6 @@ El metodo consta de un dato generico que deriva de la clase comparable
 
     }
 ```
-
 
 
 ### Procedimiento
@@ -180,7 +180,7 @@ Resumiendo
 
 ## CONCLUSIONES
 
-Al analizar Los diferentes metodos con las diferentes metodos se observa que ordenar una lista estandar no consta de muchos recursos como una lista que ha sido 
+Al analizar el algoritmo de insercion con las diferentes metodos se observa que ordenar una lista estandar no requiere de muchos recursos como una lista que ha sido 
 implementada con POO, Ya que para acceder a un elemento de los arreglos estandar solamente toma 1 en tiempo de ejecucion mientras que en una lista enlazada se tiene 
 que recorrer todos los nodos para llegar al elemento que se quiere obtener. Por eso es que en la computadora donde se efectuo estas pruebas los datos que se obtuvieron 
 de las ordenaciones de una lista estandar llegaron a los 10000, mientras con los demas llego a un promedio maximo de 1530.
@@ -211,6 +211,7 @@ LinkedList puede ir de derecha-izquierda como de izquierda-derecha evaluando pri
         }
 ```
 
+Inicialmente los metodos eran similares a linked list. Sin embargo solo al añadir la comprobacion hace que el metodo de ordenacion sea mas eficiente que LinkedList.
 
 ## CUESTIONARIO
 
@@ -228,6 +229,14 @@ Para la ejecucion
 java -cp ".:/home/path/mail.jar:/home/path/servlet.jar" MyJavaFile.java
 
 ``` 
+En visualstudio estan en una carpeta .vscode donde esta el archivo settings.json de hecho al ejecutar el boton run/debug en la terminal aparece esta linea
+
+``` 
+/EDALaboratorio04> c:; cd 'c:\Users\PXNDX\eclipse-workspace\EDALaboratorio04'; & 'C:\Program Files\Java\jdk-18.0.1\bin\java.exe' '--enable-preview' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\PXNDX\eclipse-workspace\EDALaboratorio04\bin' 'Ejercicios.Ejercicio1'
+
+``` 
+
+
 ## RETROALIMENTACION
 
 
