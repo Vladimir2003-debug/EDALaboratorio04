@@ -12,13 +12,15 @@ public class DoubleLinkedList<E> extends LinkedList<E> {
         add(root);
     }
 
+    // Metodos para la resolucion del laboratorio
     public boolean add(E e) {
-        if (this.first == null) {
+        if (this.first == null) { // Si la lista esta vacia
             this.first = new DoubleNode<E>(e);
             this.last = this.first;
             size++;
             return true;
         }
+        // Agrega el nuevo nodo al final de la lista 
         DoubleNode<E> node = new DoubleNode<E>(e, null, this.last);
         this.last.setNext(node);
         this.last = node;
@@ -27,9 +29,10 @@ public class DoubleLinkedList<E> extends LinkedList<E> {
     }
 
     public E set(int index, E element) {
-        if (index < 0 || index >= this.size())
+        if (index < 0 || index >= this.size()) // Si el index no corresponde a un nodo de la lista
             throw new IndexOutOfBoundsException();
         int i = 0;
+        //comprueba si se quiere caminar desde el primer nodo o el ultimo para cambiar el nodo deseado 
         if (index < size / 2) {
             if (index == 0) {
                 E data = this.first.getData();
@@ -64,9 +67,10 @@ public class DoubleLinkedList<E> extends LinkedList<E> {
     }
 
     public E get(int index) {
-        if (index < 0 || index >= this.size())
+        if (index < 0 || index >= this.size()) // Si el index no corresponde a un nodo de la lista
             throw new IndexOutOfBoundsException();
         int i = 0;
+        //comprueba si se quiere caminar desde el primer nodo o el ultimo para obtener el nodo deseado
         if (index < size / 2) {
             DoubleNode<E> tmp = this.first;
             while (i < index) {
@@ -85,6 +89,25 @@ public class DoubleLinkedList<E> extends LinkedList<E> {
         }
 
     }
+
+    public String toString() {
+        String txt = "";
+        for (DoubleNode<E> tmp = this.first; tmp != null; tmp = tmp.getNext()) {
+            txt += tmp.getData().toString() + " ";
+        }
+        return txt;
+    }
+
+    // Este metodo imprime la lista caminando desde el ultimo nodo 
+    public String printPrev() {
+        String txt = "";
+        for (DoubleNode<E> tmp = this.last; tmp != null; tmp = tmp.getPrev()) {
+            txt += tmp.getData().toString() + " ";
+        }
+        return txt;
+    }
+
+    //Fin metodos Laboratorio
 
     public void add(int index, E element) {
         if (this.first == null) {
@@ -124,21 +147,5 @@ public class DoubleLinkedList<E> extends LinkedList<E> {
 
     public boolean remove(Object o) {
         return super.remove(o);
-    }
-
-    public String toString() {
-        String txt = "";
-        for (DoubleNode<E> tmp = this.first; tmp != null; tmp = tmp.getNext()) {
-            txt += tmp.getData().toString() + " ";
-        }
-        return txt;
-    }
-
-    public String printPrev() {
-        String txt = "";
-        for (DoubleNode<E> tmp = this.last; tmp != null; tmp = tmp.getPrev()) {
-            txt += tmp.getData().toString() + " ";
-        }
-        return txt;
     }
 }
