@@ -100,62 +100,10 @@ y "vim" que simula el uso de vim en vs code
 Utilizar el tipo generico de Lista Enlazada para generar los peores casos y ejecutar el algoritmo de ordenamiento.
 
 Para la resolucion de este ejercicio se requirio principalmente de tres metodos:
-Metodo add() que consiste en agregar un elemento al final de la lista
-```java
-    public boolean add(E e) {
-    //comprueba si el root esta vacio
-        if(root == null) {
-            root = new Node<E>(e);
-            size++;
-            return true;
-        }
-        //recorre todo el arreglo para que al final agrege el elemento
-        Node<E> tmp = this.root;
-        while (tmp.getNext() != null) {
-            tmp = tmp.getNext();
-        }
-        tmp.setNext(new Node<E>(e));
-        size++;
-        return true;
-    }
-```
 
-Metod get() que consiste en obtener un elemento en el index deseado
-
-```java
-    public E get(int index) {
-        if(index < 0 || index >= this.size()) // comprobar de acuerdo al tamaño del arreglo
-            throw new IndexOutOfBoundsException();
-        //recorre desde root hasta el index deseado
-        int i = 0;
-        Node<E> tmp = this.root;
-        while(i < index) {
-            tmp = tmp.getNext();
-            i++;
-        }
-        return tmp.getData();
-    }
-```
-Metodo set() que cambia un elemento en el index mencionado
-
-```java
-    public E set(int index, E element) {
-        if(index < 0 || index >= this.size())// comprobacion segun el index que se ingresa
-            throw new IndexOutOfBoundsException();
-        //recorre toda la lista hasta el index -1
-        int i = 0;
-        index--;
-        Node<E> tmp = this.root;
-        while (i < index) {
-            tmp = tmp.getNext();
-            i++;
-        }
-        E data = tmp.getNext().getData();
-        // cambio de valor en el index
-        tmp.setNext(new Node<E>(element, tmp.getNext().getNext()));
-        return data;
-    }
-```
+- Metodo add() que consiste en agregar un elemento al final de la lista
+- Metod get() que consiste en obtener un elemento en el index deseado
+- Metodo set() que cambia un elemento en el index mencionado
 
 ### Ejercicio 2
 
@@ -163,9 +111,35 @@ Utilizar el tipo generico de Doble Lista Enlazada para generar los peores casos 
 
 Los metodos usados son similares al del anterior ejercicio con la diferencia de que en vez de node se usa un DoubleNode y que se añade una linea de codigo para enlazar el elemento con el anterior
 
+### Metodo de insercion
+El metodo consta de un dato generico que deriva de la clase comparable
+
+```java
+    public static <E extends Comparable<E>> long insertionSort(DoubleLinkedList<E> lista) {
+        E key;
+        int i;
+        long nano_startTime = System.nanoTime();
+        for (int j = 1; j < lista.size(); j++) {
+            key = lista.get(j);
+            i = j - 1;
+            //Aqui hace el cambio con cada elemento que sea menor que la llave usando compareTo
+            while (i > -1 && lista.get(i).compareTo(key) > 0) {
+                lista.set(i + 1, lista.get(i));
+                i--;
+            }
+            lista.set(i + 1, key);
+        }
+        long nano_endTime = System.nanoTime();
+        return nano_endTime - nano_startTime;
+
+    }
+```
+
+
+
 ### Procedimiento
 
-Se simulo una serie de listas con peor caso, el tiempo que requirio ejecutar el ordenamiento de estas listas se ingreso a un archivo y se ejecuto con el Programa GNUPlot
+Se simulo una serie de listas con peor caso, el tiempo que requirio ejecutar el ordenamiento de estas listas se ingreso a un archivo y se ejecuto con el Programa GNUPlot y en la computadora del usuario. Los datos del ejemplo llegaron sin complicaciones a 10000 sin embargo con las listas enlazadas solamente se llego a un promedio maximo  de 1530
 ```
 plot "insercionLinkedList.txt" with lines
 ```
@@ -174,8 +148,14 @@ comando ejecutado en GNUPLOT para el Ejercicio 1 - LinkedList
 plot "insercionDoubleLinkedList.txt" with lines
 ```
 Comando ejecutado en GNUPLOT para el Ejercicio 2 - DoubleLinkedList
+Tambien se hizo una grafica con el ejemplo dado para comparar.
 
+## Resultados
 Los resultados fueron los siguientes:
+
+El ejemplo inicial<br>
+<br>
+![DoubleLinkedListEstadistica](Imagenes/ListaEstandar.png)
 
 Para El ejercicio 1:<br>
 <br>
@@ -185,15 +165,52 @@ Para el Ejercicio 2<br>
 <br>
 ![DoubleLinkedListEstadistica](Imagenes/DoubleLinkedListEstadistica.png)
 
+Modificando el DoubleLinkedList
+<br>
+![DoubleLinkedListEstadistica](Imagenes/DoubleLinkedListModificado.png)
+
+Resumiendo
+
+|                 | Estandar | LinkedList | DoubleLinkedList | Modify DoubleLinkedList |
+|-----------------|----------|------------|------------------|-------------------------|
+| Tiempo mas bajo | 500      | 46200      | 32600            | 34200                   |
+| Tiempo 1530     | 325500   | 2499662100 | 2491664500       | 2077890400              |
+| Tiempo 10000    | 15621700 | ---------- | ---------------- | --------------          |
+
+
 ## CONCLUSIONES
 
-Al analizar Los diferentes metodos con las diferentes metodos se observan algunas diferencias
-- LinkedList es mas suavizado que DoubleLinkedList
-- El tiempo de ejecucion a diferencia de un arreglo estandar es mayor sin embargo es mas suavizada que al usar un arreglo estandar. En una lista enlazada no se puede
-obtener el dato directamente se requiere recorrer cada nodo del arreglo para acceder al nodo que se requiere, lo mismo pasa con DoubleLinkedList. Al analizar los
-graficos nos damos cuenta de que esta desventaja no es notoria a simple vista y es facil pensar que linked List es mas lento para ordenar a comparacion de un arreglo
- estandar. DoubleLinkedList parece el mas desnivelado de todos pero se puede usar maneras para tratar de suavizar un poco la curva una manera es ya no
- yendo de Primero a n sino de Ultimo a n para acceder/cambiar los datos.
+Al analizar Los diferentes metodos con las diferentes metodos se observa que ordenar una lista estandar no consta de muchos recursos como una lista que ha sido 
+implementada con POO, Ya que para acceder a un elemento de los arreglos estandar solamente toma 1 en tiempo de ejecucion mientras que en una lista enlazada se tiene 
+que recorrer todos los nodos para llegar al elemento que se quiere obtener. Por eso es que en la computadora donde se efectuo estas pruebas los datos que se obtuvieron 
+de las ordenaciones de una lista estandar llegaron a los 10000, mientras con los demas llego a un promedio maximo de 1530.
+LinkedList y DoubleLinkedList tiene cierto parecido salvo que al insertar y/o cambiar un nodo DoubleLinkedList requiere de unos cuantos movimientos mas. Sin embargo
+LinkedList puede ir de derecha-izquierda como de izquierda-derecha evaluando primero el index
+
+```java
+    public E get(int index) {
+        if (index < 0 || index >= this.size()) 
+            throw new IndexOutOfBoundsException();
+        int i = 0;
+        // En esta parte se evalua si el metodo caminara de derecha-izquierda o izquierda-derecha para cambiar el nodo
+        if (index < size / 2) {
+            DoubleNode<E> tmp = this.first;
+            while (i < index) {
+                tmp = tmp.getNext();
+                i++;
+            }
+            return tmp.getData();
+        } else {
+            DoubleNode<E> tmp = this.last;
+            index = size - index - 1;
+            while (i < index) {
+                tmp = tmp.getPrev();
+                i++;
+            }
+            return tmp.getData();
+        }
+```
+
 
 ## CUESTIONARIO
 
