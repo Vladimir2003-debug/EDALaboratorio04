@@ -165,7 +165,7 @@ Para el Ejercicio 2<br>
 <br>
 ![DoubleLinkedListEstadistica](Imagenes/DoubleLinkedListEstadistica.png)
 
-Modificando el DoubleLinkedList
+Modificando el DoubleLinkedList<br>
 <br>
 ![DoubleLinkedListEstadistica](Imagenes/DoubleLinkedListModificado.png)
 
