@@ -4,6 +4,7 @@ public class LinkedList<E> implements TDAList<E> {
     protected Node<E> root;
     protected int size;
 
+
     public LinkedList(){
         this.root = null;
         this.size = 0; 
@@ -13,20 +14,69 @@ public class LinkedList<E> implements TDAList<E> {
         add(root);
     }
 
+    //Metodos principales para la resolucion del laboratorio
+
     public boolean add(E e) {
-        if(root == null) {
+        if(root == null) { // Si la lista esta vacia
             root = new Node<E>(e);
             size++;
             return true;
         }
         Node<E> tmp = this.root;
-        while (tmp.getNext() != null) {
+        while (tmp.getNext() != null) { // Busca el ultimo nodo
             tmp = tmp.getNext();
         }
-        tmp.setNext(new Node<E>(e));
-        size++;
+        tmp.setNext(new Node<E>(e)); // Agrega el nuevo nodo
+        size++; // Incrementa el tamaño de la lista
         return true;
     }
+
+    public E get(int index) {
+        if(index < 0 || index >= this.size()) // Si el index no corresponde a un nodo de la lista
+            throw new IndexOutOfBoundsException();
+        int i = 0;
+        Node<E> tmp = this.root;
+        while(i < index) { // Busca el nodo correspondiente al index
+            tmp = tmp.getNext();
+            i++;
+        }
+        return tmp.getData();
+    }
+
+    public E set(int index, E element) {
+        if(index < 0 || index >= this.size()) // Si el index no corresponde a un nodo de la lista
+            throw new IndexOutOfBoundsException();
+        if(index == 0) {// si se quiere cambiar el primer elemento de la lista
+            E data = root.getData();
+            this.root.setData(element);
+            return data; 
+        }
+        // cambiar un nodo de la lista    
+        int i = 0;
+        index--;
+        Node<E> tmp = this.root;
+        while (i < index) { // Busca el nodo correspondiente al index
+            tmp = tmp.getNext();
+            i++;
+        }
+        E data = tmp.getNext().getData();
+        tmp.setNext(new Node<E>(element, tmp.getNext().getNext())); // Cambia el nodo
+        return data;
+    }
+
+    public int size() {
+        return this.size;
+    }
+
+    public String toString() {
+        String txt = "";
+        for(Node<E> tmp = this.root; tmp != null; tmp = tmp.getNext()) {
+            txt += tmp.getData() + " ";
+        }
+        return txt;
+    }
+
+    //Fin de los metodos principales para el laboratorio
 
     public void add(int index, E element) {
         int i = 0;
@@ -68,17 +118,7 @@ public class LinkedList<E> implements TDAList<E> {
         return false;
     }
 
-    public E get(int index) {
-        if(index < 0 || index >= this.size())
-            throw new IndexOutOfBoundsException();
-        int i = 0;
-        Node<E> tmp = this.root;
-        while(i < index) {
-            tmp = tmp.getNext();
-            i++;
-        }
-        return tmp.getData();
-    }
+
 
     public int indexOf(Object o) {
         int i = 0;
@@ -136,30 +176,6 @@ public class LinkedList<E> implements TDAList<E> {
         return false;
     }
 
-    public E set(int index, E element) {
-        if(index < 0 || index >= this.size())
-            throw new IndexOutOfBoundsException();
-        if(index == 0) {
-            E data = root.getData();
-            this.root.setData(element);
-            return data; 
-        }    
-        int i = 0;
-        index--;
-        Node<E> tmp = this.root;
-        while (i < index) {
-            tmp = tmp.getNext();
-            i++;
-        }
-        E data = tmp.getNext().getData();
-        tmp.setNext(new Node<E>(element, tmp.getNext().getNext()));
-        return data;
-    }
-
-    public int size() {
-        return this.size;
-    }
-
     public TDAList<E> subList(int fromIndex, int toIndex) {
         Node<E> tmp = this.root;
         int i = 0;
@@ -176,14 +192,6 @@ public class LinkedList<E> implements TDAList<E> {
         
         return subList;
 
-    }
-
-    public String toString() {
-        String txt = "";
-        for(Node<E> tmp = this.root; tmp != null; tmp = tmp.getNext()) {
-            txt += tmp.getData() + " ";
-        }
-        return txt;
     }
 
 }
