@@ -221,7 +221,7 @@ Para primero compilar
 ```
 javac -cp ".:/home/path/mail.jar:/home/path/servlet.jar" MyJavaFile.java
 ```
-Donde lo que esta entre parentesisi es la ubicacion en la computadora del jar y el -cp se refiere a classpath este archivo que se crea al crear un nuevo proyecto
+Donde lo que esta entre parentesis es la ubicacion en la computadora del jar y el -cp se refiere a classpath este archivo que se crea al crear un nuevo proyecto
 en eclipse, en este archivo se indica la direccion de los archivos .class (Usualmente se guardan en bin) y de los archivos java(en src)
 
 Para la ejecucion
@@ -229,10 +229,10 @@ Para la ejecucion
 java -cp ".:/home/path/mail.jar:/home/path/servlet.jar" MyJavaFile.java
 
 ``` 
-En visualstudio estan en una carpeta .vscode donde esta el archivo settings.json de hecho al ejecutar el boton run/debug en la terminal aparece esta linea
+En visualstudio las instruccion estan en una carpeta .vscode donde esta el archivo settings.json un ejemplo seria al ejecutar un proyecto java en VisualStudioCode
 
 ``` 
-/EDALaboratorio04> c:; cd 'c:\Users\PXNDX\eclipse-workspace\EDALaboratorio04'; & 'C:\Program Files\Java\jdk-18.0.1\bin\java.exe' '--enable-preview' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\PXNDX\eclipse-workspace\EDALaboratorio04\bin' 'Ejercicios.Ejercicio1'
+/EDALaboratorio04> c:; cd 'c:\Users\PXNDX\eclipse-workspace\EDALaboratorio04'; & 'C:\Program Files\Java\jdk-18.0.1\bin\java.exe' '--enable-preview' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\Alumno\eclipse-workspace\EDALaboratorio04\bin' 'Ejercicios.Ejercicio1'
 
 ``` 
 
