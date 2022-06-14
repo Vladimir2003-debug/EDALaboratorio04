@@ -13,7 +13,7 @@
         </tr>
     </theader>
     <tbody>
-        <tr><td colspan="3"><span style="font-weight:bold;">Formato</span>: Guía de Práctica de Laboratorio</td></tr>
+        <tr><td colspan="3"><span style="font-weight:bold;">Formato</span>: Informe de Laboratorio</td></tr>
         <tr><td><span style="font-weight:bold;">Aprobación</span>:  2022/03/01</td><td><span style="font-weight:bold;">Código</span>: GUIA-PRLD-001</td><td><span style="font-weight:bold;">Página</span>: 1</td></tr>
     </tbody>
 </table>
@@ -44,6 +44,14 @@
         <li>https://javaplot.panayotis.com/</li>
         <li>https://sourceforge.net/projects/gnuplot/files/gnuplot/5.4.3/</li>
     </ul>
+</td>
+</<tr>
+<tr><td colspan="4">Alumnos:
+<ul>
+<li>Vladimir Arturo Sulla Quispe - vsullaq@unsa.edu.pe</li>
+</ul>
+<td colspan = "2">NOTA:
+</td>
 </td>
 </<tr>
 <tr><td colspan="6">DOCENTES:
